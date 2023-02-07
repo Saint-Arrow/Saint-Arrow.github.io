@@ -8,18 +8,20 @@
 </head>
 
 <body>
-	<div>
+	<div id="div1">
 		<p> content is aaa </p>
-		<button > add </button>
-		<button> delete </button>
 	</div>
-	
+	<button onclick="add_node()"> add </button>
+	<button onclick="delete_node()"> delete </button>
+
+
 	<br>
-	<button> +-*/ </button>
+	<button onclick="math_print()"> +-*/ </button>
+
 	<br>
-	<button onclick="print_date()"> 日期 </button>
+	<button onclick="timeout_print_date()"> 日期 </button>
 	
-	
+	<p id="time_p">time:</p>
 </body>
 
 </html>
