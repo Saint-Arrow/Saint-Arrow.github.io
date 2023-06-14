@@ -1,0 +1,6 @@
+2023-06-14 22:02:09: (server.c.1909) server started (lighttpd/1.4.71)
+2023-06-14 22:05:24: (server.c.2308) server stopped by UID = 1011 PID = 15706
+2023-06-14 22:06:16: (server.c.1909) server started (lighttpd/1.4.71)
+2023-06-14 22:06:47: (server.c.2308) server stopped by UID = 1011 PID = 28732
+2023-06-14 22:09:50: (server.c.1909) server started (lighttpd/1.4.71)
+2023-06-14 22:10:13: (server.c.2308) server stopped by UID = 1011 PID = 28192
