@@ -49,4 +49,6 @@ int main()
 
     printf("CONTENT_TYPE %s\n",getenv("CONTENT_TYPE"));printf("<br>");
     printf("CONTENT_LENGTH %s\n",getenv("CONTENT_LENGTH"));printf("<br>");
+    printf("DOMAIN_NAME %s\n",getenv("DOMAIN_NAME"));printf("<br>");
+    
 }
