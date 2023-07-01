@@ -75,7 +75,6 @@
         form.target = "_blank";// "_self"; // 使用 "_self" 以停留在当前页面,onload的处理和后面input触发时候表现是不一致的
         var xhr = new XMLHttpRequest(); // 创建 AJAX 请求对象
         xhr.onreadystatechange = function() {
-          console.log('readyState:'+xhr.readyState+" status:"+xhr.status);
           if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
               // 在此处理服务器返回的数据
@@ -92,7 +91,7 @@
     
         xhr.open(form.method, form.action , true); // 打开异步请求
         xhr.send(); // 发送表单数据,GET方法的时候这个可以不用传form
-        
+
         //form.submit(); //当调用form.submit()提交表单时，将不会触发onsubmit事件处理程序中的任何函数
       }
       window.onload=read_after_load;//窗口加载时候获取单前配置的内容
@@ -104,13 +103,21 @@
   <body>
     <form id="myForm_r" action="cgi-bin/get_r.cgi" method="get" >
     </form>
-    <form id="myForm" action="cgi-bin/get_w.cgi" method="get"  onsubmit="return submitForm(event)" >
+    <form id="myForm_w" action="cgi-bin/get_w.cgi" method="get"  onsubmit="return submitForm(event)" >
       <! 用submitForm来实现点击按钮之后不跳转>
+      -------------GET method 设置参数测试：<br>
       keya:<input type="text" id="keya" name="keya" value='123465'><br>
       keyb:<input type="text" id="keyb" name="keyb"  value='222'><br>  
       <input type="submit" value="提交 &rarr;" >
     </form>
- 
+    -------------POST method 设置参数测试：<br>
+    <form id="myForm_post" action="cgi-bin/post.cgi" method="post"  target="hideFrame">
+      <! 用iframe来实现点击按钮之后不跳转>
+      keya:<input type="text"  name="keya" value='12346'><br>
+      keyb:<input type="text"  name="keyb"  value='222'><br>  
+      <input type="submit" value="提交 &rarr;" >
+    </form>
+    <iframe src="" name='hideFrame' style="display:none;" > </iframe>
 
   </body>
 </html>
