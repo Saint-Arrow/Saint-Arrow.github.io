@@ -23,7 +23,7 @@ int main()
     size_t line_size = 0;
     int read = 0;
     int value[2]={0,0};
-    //printf("Content-Type:text/html;\r\n\r\n");
+    
     FILE *fp=fopen("./data.conf","rb");
     char *p=NULL;
     if(NULL == fp)
@@ -51,7 +51,11 @@ int main()
 
 	}
     fclose(fp);
-    printf("keya=%d;keyb=%d\n",value[0],value[1]);//默认应该是用&连接
-    //用;的方式返回数据可能不太太合适，不过前端的页面代码可以和cookie保持一致
+    //注意：Path=/ 需要加，不然提交的cookie网页会获取不到，另外cookie的设置需要在Content-Type之前
+    
+    printf("Set-Cookie:keya=%d;Path=/\n",value[0]);
+    printf("Set-Cookie:keyb=%d;Path=/\n",value[1]);
+    printf("Content-Type:text/html;\r\n\r\n");
 
+   
 }

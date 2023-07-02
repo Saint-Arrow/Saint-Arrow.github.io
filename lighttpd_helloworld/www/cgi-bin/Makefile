@@ -28,9 +28,11 @@ CXXFLAGS += -std=c++11
 #OBJ like obj/./dbg/ucam_dbgout.o
 # Target
 .PHONY: all clean 
-all :get_r.cgi get_w.cgi post.cgi hello_world.cgi
+all :get_r.cgi get_cookie.cgi get_w.cgi post.cgi hello_world.cgi
     
 hello_world.cgi:hello_world.o 
+	$(LD)  $^ -g -o $@ -lpthread -lm 
+get_cookie.cgi:get_cookie.o 
 	$(LD)  $^ -g -o $@ -lpthread -lm 
 get_r.cgi:get_r.o 
 	$(LD)  $^ -g -o $@ -lpthread -lm 

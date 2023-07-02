@@ -61,17 +61,41 @@
           if (c_start!=-1)
           { 
             c_start=c_start + c_name.length+1 
-            c_end=cookie.indexOf("&",c_start)
+            c_end=cookie.indexOf(";",c_start)
           if (c_end==-1) c_end=cookie.length
           return unescape(cookie.substring(c_start,c_end))
           } 
         }
       return ""
       }
+      function get_return_cookie()
+      {
+        var form = document.getElementById('myForm_cookie');
+        
+        var xhr = new XMLHttpRequest(); // 创建 AJAX 请求对象
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              // 在此处理服务器返回的数据
+              console.log(document.cookie);
+              var keya_item = document.getElementById('keya');
+              keya_item.value=getCookie(document.cookie,"keya");
+              var keyb_item = document.getElementById('keyb');
+              keyb_item.value=getCookie(document.cookie,"keyb");
+            } 
+          }
+          
+        };
+        xhr.open(form.method, form.action , true); // 打开异步请求
+        xhr.send(); // 发送表单数据,GET方法的时候这个可以不用传form
+      }
       function read_after_load()
       {
         console.log("window.onload");
+        document.cookie="";
         var form = document.getElementById('myForm_r');
+        //form.submit(); //当调用form.submit()提交表单时，将不会触发onsubmit事件处理程序中的任何函数
+
         form.target = "_blank";// "_self"; // 使用 "_self" 以停留在当前页面,onload的处理和后面input触发时候表现是不一致的
         var xhr = new XMLHttpRequest(); // 创建 AJAX 请求对象
         xhr.onreadystatechange = function() {
@@ -88,11 +112,8 @@
           }
           
         };
-    
         xhr.open(form.method, form.action , true); // 打开异步请求
         xhr.send(); // 发送表单数据,GET方法的时候这个可以不用传form
-
-        //form.submit(); //当调用form.submit()提交表单时，将不会触发onsubmit事件处理程序中的任何函数
       }
       window.onload=read_after_load;//窗口加载时候获取单前配置的内容
     </script>
@@ -101,8 +122,14 @@
   </head>
 
   <body>
-    <form id="myForm_r" action="cgi-bin/get_r.cgi" method="get" >
+    <form id="myForm_cookie" action="cgi-bin/get_cookie.cgi" method="get" target="hideFrame" onsubmit="return get_return_cookie(event)">
+      -------------GET method 通过cookie的方式获取参数测试：<br>
+      <input type="submit" value="提交 &rarr;" >
     </form>
+    <form id="myForm_r" action="cgi-bin/get_r.cgi" method="get" >
+      -------------GET method 加载页面后通过AJAX的方式获取参数测试：<br>
+    </form>
+    
     <form id="myForm_w" action="cgi-bin/get_w.cgi" method="get"  onsubmit="return submitForm(event)" >
       <! 用submitForm来实现点击按钮之后不跳转>
       -------------GET method 设置参数测试：<br>
