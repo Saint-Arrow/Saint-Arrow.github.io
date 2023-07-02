@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hello world</title>
+    <script>
+      function submitForm(event) {
+        event.preventDefault(); // 阻止表单默认提交事件，默认提交的话会自动跳转到action的url
+        //var formData = new FormData(event.target); // 创建表单数据对象
+        
+        // 创建一个空数组来存储键值对，因为此时的action是没有添加GET后面的键值对的，需要从event中取出来
+        const keyValuePairs = [];
+        // 获取原来表单的元素
+        var formElements = event.target.elements;
+        // 遍历原来表单的元素
+        for (var i = 0; i < formElements.length; i++) {
+          var element = formElements[i];
+          // 检查元素是否为 input 或 textarea
+          if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            // 检查元素是否具有名称和值
+            if (element.name && element.value) {
+              keyValuePairs.push(`${element.name}=${element.value}`);
+            }
+          }
+        }
+        // 将数组中的键值对拼接成一个字符串
+        const queryString = keyValuePairs.join('&');
+
+        var xhr = new XMLHttpRequest(); // 创建 AJAX 请求对象
+        xhr.onreadystatechange = function() {
+          console.log('readyState:'+xhr.readyState+" status:"+xhr.status);
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              // 在此处理服务器返回的数据
+              console.log(xhr.responseText);
+              return true;
+            } else {
+              // 处理请求错误
+              console.error('请求发生错误');
+              return false; // 防止表单跳转
+            }
+          }
+          else{
+            return false; // 防止表单跳转
+          }
+        };
+    
+        xhr.open(event.target.method, event.target.action+"?"+queryString , true); // 打开异步请求
+        xhr.send(); // 发送表单数据,GET方法的时候这个可以不用传form
+        return false; // 防止表单跳转
+      }
+
+      var readString;
+      function getCookie(cookie,c_name)
+      {
+        if (cookie.length>0)
+        {
+          c_start=cookie.indexOf(c_name + "=")
+          if (c_start!=-1)
+          { 
+            c_start=c_start + c_name.length+1 
+            c_end=cookie.indexOf(";",c_start)
+          if (c_end==-1) c_end=cookie.length
+          return unescape(cookie.substring(c_start,c_end))
+          } 
+        }
+      return ""
+      }
+      function get_return_cookie()
+      {
+        var form = document.getElementById('myForm_cookie');
+        
+        var xhr = new XMLHttpRequest(); // 创建 AJAX 请求对象
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              // 在此处理服务器返回的数据
+              console.log(document.cookie);
+              var keya_item = document.getElementById('keya');
+              keya_item.value=getCookie(document.cookie,"keya");
+              var keyb_item = document.getElementById('keyb');
+              keyb_item.value=getCookie(document.cookie,"keyb");
+            } 
+          }
+          
+        };
+        xhr.open(form.method, form.action , true); // 打开异步请求
+        xhr.send(); // 发送表单数据,GET方法的时候这个可以不用传form
+      }
+      function read_after_load()
+      {
+        console.log("window.onload");
+        document.cookie="";
+        var form = document.getElementById('myForm_r');
+        //form.submit(); //当调用form.submit()提交表单时，将不会触发onsubmit事件处理程序中的任何函数
+
+        form.target = "_blank";// "_self"; // 使用 "_self" 以停留在当前页面,onload的处理和后面input触发时候表现是不一致的
+        var xhr = new XMLHttpRequest(); // 创建 AJAX 请求对象
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              // 在此处理服务器返回的数据
+              readString=xhr.responseText;
+              console.log(xhr.responseText);
+              var keya_item = document.getElementById('keya');
+              keya_item.value=getCookie(readString,"keya");
+              var keyb_item = document.getElementById('keyb');
+              keyb_item.value=getCookie(readString,"keyb");
+            } 
+          }
+          
+        };
+        xhr.open(form.method, form.action , true); // 打开异步请求
+        xhr.send(); // 发送表单数据,GET方法的时候这个可以不用传form
+      }
+      window.onload=read_after_load;//窗口加载时候获取单前配置的内容
+    </script>
+
+    
+  </head>
+
+  <body>
+    <form id="myForm_cookie" action="cgi-bin/get_cookie.cgi" method="get" target="hideFrame" onsubmit="return get_return_cookie(event)">
+      -------------GET method 通过cookie的方式获取参数测试：<br>
+      <input type="submit" value="提交 &rarr;" >
+    </form>
+    <form id="myForm_r" action="cgi-bin/get_r.cgi" method="get" >
+      -------------GET method 加载页面后通过AJAX的方式获取参数测试：<br>
+    </form>
+    
+    <form id="myForm_w" action="cgi-bin/get_w.cgi" method="get"  onsubmit="return submitForm(event)" >
+      <! 用submitForm来实现点击按钮之后不跳转>
+      -------------GET method 设置参数测试：<br>
+      keya:<input type="text" id="keya" name="keya" value='123465'><br>
+      keyb:<input type="text" id="keyb" name="keyb"  value='222'><br>  
+      <input type="submit" value="提交 &rarr;" >
+    </form>
+    -------------POST method 设置参数测试：<br>
+    <form id="myForm_post" action="cgi-bin/post.cgi" method="post"  target="hideFrame">
+      <! 用iframe来实现点击按钮之后不跳转>
+      keya:<input type="text"  name="keya" value='12346'><br>
+      keyb:<input type="text"  name="keyb"  value='222'><br>  
+      <input type="submit" value="提交 &rarr;" >
+    </form>
+    <iframe src="" name='hideFrame' style="display:none;" > </iframe>
+
+  </body>
+</html>
