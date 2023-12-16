@@ -24,6 +24,7 @@
 		a{text-decoration:none}
 		ul{list-style-type: none;}
 	</style>
+	<script type="text/javascript" src="js/demo.js"></script>
 </head>
 
 
@@ -31,15 +32,15 @@
 	<div class="left-column" style="width:180px;height:100%;border-style:none solid none solid;" >
 		<h3>导航栏</h3>
 		<ul >
-			<li> <a href="#log">笔记博客</a> </li>
-			<li> <a href="#课程">课程</a> </li>
-			<li> <a href="https://github.com/Saint-Arrow">repo</a> </li>	
+			<li> <a href="#log" id="tablog">笔记博客</a> </li>
+			<li> <a href="#课程" id="tablesson">课程</a> </li>
+			<li> <a href="#repo" id="tabrepo">repo</a> </li>	
 			
 		</ul>
-		
 	</div>
-	<div class="right-column">
-		<p id="log"></p>
+
+	<div id="log" class="right-column">
+		<p ></p>
 		<a href="https://blog.csdn.net/qq_30503573?type=blog" >  &nbsp&nbsp 笔记博客 </a>
 		<ul > 
 			<li>
@@ -82,11 +83,11 @@
 				<a href="https://blog.csdn.net/qq_30503573/article/details/131500299"> &nbsp&nbsp lighttpd入门以及HTML与CGI的交互 </a>
 			</li>
 		</ul>
-		
+	</div>
 		
 	
-
-		<p id="lesson"> 课程</p>
+	<div id="lesson" class="right-column" style="display:none;">
+		<p > 课程</p>
 		<ul > 
 			<li>
 			<a href="./lesson/helloworld.html" >  &nbsp&nbsp html入门 </a>
@@ -100,9 +101,15 @@
 			
 
 		</ul>
+	</div>
 
-		<p id="repo"> repo</p>
+	<div id="repo" class="right-column" style="display:none;">
+		<p > repo</p>
 		<ul > 
+			<li>
+				<a href="https://github.com/Saint-Arrow">&nbsp&nbsp repo</a>
+			</li>
+			
 			<li>
 				<a href="./repo/patch_view.html"> &nbsp&nbsp patch_view </a>
 			</li>
