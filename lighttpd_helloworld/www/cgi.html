@@ -53,7 +53,7 @@
       }
 
       var readString;
-      function getCookie(cookie,c_name)
+      function get_key_value(cookie,c_name)
       {
         if (cookie.length>0)
         {
@@ -79,9 +79,9 @@
               // 在此处理服务器返回的数据
               console.log(document.cookie);
               var keya_item = document.getElementById('keya');
-              keya_item.value=getCookie(document.cookie,"keya");
+              keya_item.value=get_key_value(document.cookie,"keya");
               var keyb_item = document.getElementById('keyb');
-              keyb_item.value=getCookie(document.cookie,"keyb");
+              keyb_item.value=get_key_value(document.cookie,"keyb");
             } 
           }
           
@@ -105,9 +105,9 @@
               readString=xhr.responseText;
               console.log(xhr.responseText);
               var keya_item = document.getElementById('keya');
-              keya_item.value=getCookie(readString,"keya");
+              keya_item.value=get_key_value(readString,"keya");
               var keyb_item = document.getElementById('keyb');
-              keyb_item.value=getCookie(readString,"keyb");
+              keyb_item.value=get_key_value(readString,"keyb");
             } 
           }
           
@@ -124,7 +124,7 @@
   <body>
     <form id="myForm_cookie" action="cgi-bin/get_cookie.cgi" method="get" target="hideFrame" onsubmit="return get_return_cookie(event)">
       -------------GET method 通过cookie的方式获取参数测试：<br>
-      <input type="submit" value="提交 &rarr;" >
+      <input type="submit" value="加载 &rarr;" >
     </form>
     <form id="myForm_r" action="cgi-bin/get_r.cgi" method="get" >
       -------------GET method 加载页面后通过AJAX的方式获取参数测试：<br>
@@ -135,14 +135,14 @@
       -------------GET method 设置参数测试：<br>
       keya:<input type="text" id="keya" name="keya" value='123465'><br>
       keyb:<input type="text" id="keyb" name="keyb"  value='222'><br>  
-      <input type="submit" value="提交 &rarr;" >
+      <input type="submit" value="保存 &rarr;" >
     </form>
     -------------POST method 设置参数测试：<br>
     <form id="myForm_post" action="cgi-bin/post.cgi" method="post"  target="hideFrame">
       <! 用iframe来实现点击按钮之后不跳转>
       keya:<input type="text"  name="keya" value='12346'><br>
       keyb:<input type="text"  name="keyb"  value='222'><br>  
-      <input type="submit" value="提交 &rarr;" >
+      <input type="submit" value="保存 &rarr;" >
     </form>
     <iframe src="" name='hideFrame' style="display:none;" > </iframe>
 
