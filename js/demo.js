@@ -23,6 +23,7 @@ for (var i = 0; i < tabs.length; i++) {
 
     // 显示当前导航标签对应的内容段落以及高亮标签
     this.classList.add("highlight");
+    console.log(this.dataset.id);//H5才支持 data-*的自定义参数的写法以及dataset获取的方法
     var targetId = this.getAttribute('id').replace('tab', '');
     var targetContent = document.getElementById(targetId);
     targetContent.style.display = 'block';
