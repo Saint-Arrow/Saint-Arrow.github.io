@@ -15,108 +15,42 @@
 		}
 		.left-column {
 				float: left;
-				width: 50%;
+				width: 20%;
+				height:100%
 		}
 		.right-column {
 				float: left;
-				width: 50%;
+				width: 80%;
+				height:100%
 		}	
 		a{text-decoration:none}
 		ul{list-style-type: none;}
+		
 	</style>
 	<script type="text/javascript" src="js/demo.js"></script>
 </head>
 
 
 <body>
-	<div class="left-column" style="width:180px;height:100%;border-style:none solid none solid;" >
+	<div class="left-column" style="width:180px;border-style:none solid none solid;" >
 		<h3>导航栏</h3>
 		<ul >
-			<li> <a href="#log" id="tablog">笔记博客</a> </li>
-			<li> <a href="#课程" id="tablesson">课程</a> </li>
-			<li> <a href="#repo" id="tabrepo">repo</a> </li>	
-			
+			<li> <a href="#log" id="tablog" data-id="log">笔记博客</a> </li>
+			<li> <a href="#课程" id="tablesson" data-id="lesson">课程</a> </li>
+			<li> <a href="#repo" id="tabrepo" data-id="repo">repo</a> </li>	
 		</ul>
 	</div>
 
 	<div id="log" class="right-column">
-		<p ></p>
-		<a href="https://blog.csdn.net/qq_30503573?type=blog" >  &nbsp&nbsp 笔记博客 </a>
-		<ul > 
-			<li>
-				<a href="https://blog.csdn.net/qq_30503573/article/details/123981825" >  
-					&nbsp&nbsp Opencv python 基础入门（1）---图片读写以及像素操作 </a>
-			</li>
-			<li>
-				<a href="https://blog.csdn.net/qq_30503573/article/details/123981895" >  
-					&nbsp&nbsp Opencv python基础入门（2）---降噪 </a>
-			</li>
-			<li>
-				<a href="https://blog.csdn.net/qq_30503573/article/details/123981916" >  
-					&nbsp&nbsp Opencv python基础入门（3）---形态学变换 </a>
-			</li>
-			<li>
-				<a href="https://blog.csdn.net/qq_30503573/article/details/123981935" >  
-					&nbsp&nbsp Opencv python基础入门（4）---sobel算子及边缘检测 </a>
-			</li>
-			<li>
-				<a href="https://blog.csdn.net/qq_30503573/article/details/123981952" >  
-					&nbsp&nbsp Opencv python基础入门（5）---图像金字塔 </a>
-			</li>
-			<li>
-				<a href="https://blog.csdn.net/qq_30503573/article/details/123982609" >  
-					&nbsp&nbsp Opencv python基础入门（6）---直方图以及直方图均衡化 </a>
-			</li>
-			<li>
-				<a href="https://blog.csdn.net/qq_30503573/article/details/123982647" >  
-					&nbsp&nbsp Opencv python基础入门（7）---傅立叶变换 </a>
-			</li>
-			<li>
-				<a href="https://blog.csdn.net/qq_30503573/article/details/124500068" >  
-					&nbsp&nbsp Opencv python基础入门（8）---图片倾斜矫正</a>
-			</li>
-			<li>
-				<a href="https://blog.csdn.net/qq_30503573/article/details/124476935" >  
-					&nbsp&nbsp Opencv Python 综合练习1---读取银行卡卡号</a>
-			</li>
-			<li>
-				<a href="https://blog.csdn.net/qq_30503573/article/details/131500299"> &nbsp&nbsp lighttpd入门以及HTML与CGI的交互 </a>
-			</li>
-		</ul>
+		<iframe src="./log/index.html" frameborder="0" style="width:100%;height:100%" ></iframe>
 	</div>
-		
-	
-	<div id="lesson" class="right-column" style="display:none;">
-		<p > 课程</p>
-		<ul > 
-			<li>
-			<a href="./lesson/helloworld.html" >  &nbsp&nbsp html入门 </a>
-			</li>
-			<li>
-				<a href="./lesson/js_test.html"> &nbsp&nbsp javascript入门 </a>
-			</li>
-			<li>
-				<a href="https://github.com/Saint-Arrow/Saint-Arrow.github.io/tree/main/lighttpd_helloworld/www"> &nbsp&nbsp lighttpd以及jquery入门 </a>
-			</li>
-			<li>
-				<a href="./lesson/easyui.html"> &nbsp&nbsp jquery easyui 入门 </a>
-			</li>
-			
 
-		</ul>
+	<div id="lesson" class="right-column" style="display:none;">
+		<iframe src="./lesson/index.html" frameborder="0" style="width:100%;height:100%" ></iframe>
 	</div>
 
 	<div id="repo" class="right-column" style="display:none;">
-		<p > repo</p>
-		<ul > 
-			<li>
-				<a href="https://github.com/Saint-Arrow">&nbsp&nbsp github</a>
-			</li>
-			<li>
-				<a href="./repo/patch_view.html"> &nbsp&nbsp patch_view </a>
-			</li>
-			
-		</ul>
+		<iframe src="./repo/index.html" frameborder="0" style="width:100%;height:100%" ></iframe>
 	</div>
 </body>
 

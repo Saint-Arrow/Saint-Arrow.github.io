@@ -10,8 +10,9 @@ var contents = document.querySelectorAll('.right-column');
 // 添加事件监听器
 for (var i = 0; i < tabs.length; i++) {
   tabs[i].addEventListener('click', function(e) {
+    //e:事件对象 this指向调用者的对象
     e.preventDefault(); // 阻止默认行为
-
+    
     // 隐藏所有的内容段落
     for (var j = 0; j < contents.length; j++) {
       contents[j].style.display = 'none';
