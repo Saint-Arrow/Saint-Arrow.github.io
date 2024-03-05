@@ -14,11 +14,15 @@ for (var i = 0; i < tabs.length; i++) {
     e.preventDefault(); // 阻止默认行为
     
     // 隐藏所有的内容段落
+    for (var j = 0; j < tabs.length; j++) {
+      tabs[j].classList.remove("highlight");
+    }
     for (var j = 0; j < contents.length; j++) {
       contents[j].style.display = 'none';
     }
 
-    // 显示当前导航标签对应的内容段落
+    // 显示当前导航标签对应的内容段落以及高亮标签
+    this.classList.add("highlight");
     var targetId = this.getAttribute('id').replace('tab', '');
     var targetContent = document.getElementById(targetId);
     targetContent.style.display = 'block';
